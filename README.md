@@ -1,1 +1,1 @@
-# everydayrails-rails-4-1-rspec-3-0
+[Everyday Rails - RSpecによるRailsテスト入門](https://leanpub.com/everydayrailsrspec-jp)をやってます。
