@@ -16,7 +16,11 @@ describe Contact do
     expect(contact.errors[:firstname]).to include("can't be blank")
   end
 
-  it "is invalid without a lastname"
+  it "is invalid without a lastname" do
+    contact = Contact.new(lastname: nil)
+    contact.valid?
+    expect(contact.errors[:lastname]).to include("can't be blank")
+  end
 
   it "is invalid without an email address"
 
