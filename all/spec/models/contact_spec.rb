@@ -39,6 +39,10 @@ describe Contact do
     expect(contact.errors[:email]).to include('has already been taken')
   end
 
+  it "has three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
+  end
+
   describe "filter last name by letter" do
     before :each do
       @smith = Contact.create(
