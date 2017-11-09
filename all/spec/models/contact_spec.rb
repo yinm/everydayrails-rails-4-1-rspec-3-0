@@ -32,22 +32,12 @@ describe Contact do
     expect(contact.name).to eq 'Jane Smith'
   end
 
-  it 'is invalid with a duplicate email address' do
-    Contact.create(
-      firstname: 'Joe',
-      lastname: 'Tester',
-      email: 'tester@example.com'
-    )
-
-    contact = Contact.new(
-      firstname: 'Jane',
-      lastname: 'Tester',
-      email: 'tester@example.com'
-    )
+  it "is invalid with a duplicate email address" do
+    FactoryGirl.create(:contact, email: 'aaron@example.com')
+    contact = FactoryGirl.build(:contact, email: 'aaron@example.com')
     contact.valid?
     expect(contact.errors[:email]).to include('has already been taken')
   end
-
 
   describe "filter last name by letter" do
     before :each do
