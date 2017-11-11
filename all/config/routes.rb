@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
 
-  resources :contacts do
-    resources :phones
-  end
+  resources :contacts
 
   root 'contacts#index'
 end
