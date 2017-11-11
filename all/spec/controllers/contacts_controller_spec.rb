@@ -453,8 +453,7 @@ describe ContactsController do
   end
 
   describe 'guest access' do
-    # GET #index and GET #show examples are the same as those for
-    # administrators and users
+    it_behaves_like 'public access to contacts'
 
     describe 'GET #new' do
       it 'requires login' do
