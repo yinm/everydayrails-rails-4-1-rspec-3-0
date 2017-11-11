@@ -2,6 +2,42 @@ require 'rails_helper'
 
 describe ContactsController do
 
+  shared_examples_for 'public access to contacts' do
+    before :each do
+      @contact = create(
+        :contact,
+        firstname: 'Lawrence',
+        lastname: 'Smith'
+      )
+    end
+
+    describe 'GET #index' do
+      it 'populates an array of contacts' do
+        get :index
+        expect(assigns(:contacts)).to match_array [@contact]
+      end
+
+      it 'renders the :index template' do
+        get :index
+        expect(response).to render_template :index
+      end
+    end
+
+    describe 'GET #show' do
+      it 'assigns the reqeusted contact to @contact' do
+        get :show,
+          id: @contact
+        expect(assigns(:contact)).to eq @contact
+      end
+
+      it 'renders the :show template' do
+        get :show,
+          id: @contact
+        expect(response).to render_template :show
+      end
+    end
+  end
+
   describe 'administrator access' do
     before :each do
       user = create(:admin)
